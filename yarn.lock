@@ -2458,6 +2458,25 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
+"@zedux/atoms@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@zedux/atoms/-/atoms-1.2.3.tgz#e75b3b43e36ceec788089932d07d9449fb33a729"
+  integrity sha512-mGEWc1T0NW+tlsDwdEQU2h6tQQNjDBx1aVKGbQeE9DmoKcvYmuY926R9aEgJ24UNcmEyxR3NIfzLgr1quc8IVQ==
+  dependencies:
+    "@zedux/core" "^1.2.3"
+
+"@zedux/core@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@zedux/core/-/core-1.2.3.tgz#cab63700e7ca3b3d324109df384a76b94a54ce5f"
+  integrity sha512-hrjedEbUA/Xn4WBvcBsggl4sHF8dwqoPeAH71MZlSZ1x4wIXyWhszyoiZenPHYi7SscCP0FfBWQRbyUxrZGGhQ==
+
+"@zedux/react@1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@zedux/react/-/react-1.2.3.tgz#9def1041de2fe9c4d9c50431177dd6b9bcad2394"
+  integrity sha512-j5FxYacTs8yUd0s2jy2HuvKuoQcuoZ02CLWcX43nhetaT6tVssQqGrIx1whfNtR9AjpH6wvM112p72GNb2ErLQ==
+  dependencies:
+    "@zedux/atoms" "^1.2.3"
+
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.6.tgz#41b80f2c871d19686216b82309231cfd3cb3d291"

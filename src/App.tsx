@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  atom,
+  injectAtomInstance,
+  injectStore,
+  useAtomState,
+  useAtomValue,
+} from "@zedux/react";
 
-function App() {
+const parentAtom = atom("parent", ({ groupId }: { groupId: string }) => {
+  const store = injectStore(`parent-value-for-group-${groupId}`);
+
+  return store;
+});
+
+const childAtom = atom("child", ({ groupId }: { groupId: string }) => {
+  const parent = injectAtomInstance(parentAtom, [{ groupId }]);
+
+  const store = injectStore<{ childId: string; parentValue?: string }>({
+    childId: "some-id",
+  });
+
+  // @ts-expect-error how to type store composition...?
+  store.use({ parentValue: parent.store });
+
+  return store;
+});
+
+const showChildAtom = atom("show-child", false);
+
+export default function App() {
+  const [showChild, setShowChild] = useAtomState(showChildAtom);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <button onClick={() => setShowChild(!showChild)}>Toggle child</button>
+      </div>
+
+      <br />
+
+      {showChild && <Child groupId="some-group-id" />}
     </div>
   );
 }
 
-export default App;
+const Child = ({ groupId }: { groupId: string }) => {
+  const child = useAtomValue(childAtom, [{ groupId }]);
+
+  return (
+    <div>
+      <div>Parent value: {child.parentValue ?? "NO VALUE!!"}</div>
+      <div>Child value: {child.childId ?? "NO VALUE!!"}</div>
+    </div>
+  );
+};
